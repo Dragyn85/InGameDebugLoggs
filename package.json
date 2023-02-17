@@ -1,0 +1,9 @@
+{
+  "name": "com.resolutiongames.test",
+  "displayName": "Programming Test",
+  "version": "0.0.1",
+  "description": "This template shall be used when creating a new package. The Description section, as well as all other sections in this file shall be filled in with information related to the newly created package.",
+  "documentationUrl": "README.md",
+  "changelogUrl": "CHANGELOG.md"
+}
+
