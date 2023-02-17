@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,5 +64,10 @@ public class LoggerCanvas : MonoBehaviour {
         var type2 = LogType.Exception;
         showByType[type2] = !showByType[type2];
         ActivateTypeOfLogMessages(showByType[type2], type2);
+    }
+
+    public void ToggleType(LogType logType) {
+        showByType[logType] = !showByType[logType];
+        ActivateTypeOfLogMessages(showByType[logType], logType);
     }
 }

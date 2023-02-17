@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5055907024214061632}
   - component: {fileID: 3148298846023942149}
-  - component: {fileID: 8328232827733104649}
+  - component: {fileID: 1400845261266568537}
   m_Layer: 0
-  m_Name: GameLogger
+  m_Name: InGameLogger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e884eb76a6104144bb54adf3240d0829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActivated: 0
---- !u!114 &8328232827733104649
+--- !u!114 &1400845261266568537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

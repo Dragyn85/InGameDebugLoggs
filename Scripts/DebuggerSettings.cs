@@ -4,6 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(InGameLogger))]
 public class DebuggerSettings : MonoBehaviour {
+    static private bool logginActive;
+
     [SerializeField] private LoggerCanvas loggerUIprefab;
     [SerializeField] bool persistantOverScenes;
 
@@ -51,6 +53,9 @@ public class DebuggerSettings : MonoBehaviour {
             return false;
         }
         return true;
+    }
+    public static void ToggleInGameLoggerActive() {
+
     }
 
     private void OnAwake() {

@@ -5,16 +5,18 @@ using UnityEngine;
 public class InGameLogger : MonoBehaviour {
     public static event Action<LogMessage> OnLogRecived;
 
-    [SerializeField] private bool isActivated;
+    private bool isActivated = true;
 
-    private bool activeLastFrame;
     List<LogMessage> registredMessages = new List<LogMessage>();
     public List<LogMessage> GetAllMessages => registredMessages;
     private void Awake() {
         HandleLogMessageRegistration();
-        activeLastFrame = isActivated;
     }
-    
+
+    public void SetActive(bool setActive) {
+        isActivated = setActive;
+        HandleLogMessageRegistration();
+    }
 
     private void HandleLogMessageRegistration() {
         Application.logMessageReceived -= HandleLogMessageReceived;
@@ -24,20 +26,13 @@ public class InGameLogger : MonoBehaviour {
     }
 
     private void HandleLogMessageReceived(string condition, string stackTrace, LogType type) {
-        
+
         DateTime time = DateTime.Now;
         var logMessage = new LogMessage(condition, stackTrace, type, time);
         registredMessages.Add(logMessage);
         OnLogRecived?.Invoke(logMessage);
     }
-    
-    private void Update() {
-        if(activeLastFrame != isActivated) {
-            activeLastFrame = isActivated;
-            HandleLogMessageRegistration();
-        }
-    }
-    
+
     [ContextMenu("Add one of each message type")]
     public void AddTestMessages() {
         Debug.Log("Hej, jag är en log");
