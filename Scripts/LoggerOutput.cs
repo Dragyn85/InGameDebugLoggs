@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 using System.IO;
 using System;
+using UnityEditor;
 
 public class LoggerOutput : MonoBehaviour {
     static string DEFAULT_PATH = "/Logger";
     static string FILENAME = "output";
     static string FILE_EXTENSION = ".txt";
 
-    private void AddDebugMessage(LogMessage message) {
-        TextPresentableMessage newLog = new TextPresentableMessage() {
-            type = message.type.ToString(),
-            condition= message.condition,
-            stackTrace= message.stackTrace
-        };
-        string newLogEntryAsJson = JsonUtility.ToJson(newLog, true);
+    [SerializeField, HideInInspector] private string customOutputPath;
 
-        string path = $"{Application.persistentDataPath}{DEFAULT_PATH}";
+    private void AddDebugMessage(LogMessage message) {
+        string newLogEntryAsJson = JsonUtility.ToJson(message, true);
+        string path;
+        if(string.IsNullOrEmpty(customOutputPath)) {
+            path = $"{Application.persistentDataPath}{DEFAULT_PATH}";
+        }
+        else {
+            path = customOutputPath;
+        }
 
         if(!Directory.Exists(path)) {
             Directory.CreateDirectory(path);
         }
-        string filePath = $"{Application.persistentDataPath}{DEFAULT_PATH}/{FILENAME}{FILE_EXTENSION}";
+        string filePath = $"{path}/{FILENAME}{FILE_EXTENSION}";
         try {
             File.AppendAllText(filePath, newLogEntryAsJson);
         }
@@ -36,9 +39,7 @@ public class LoggerOutput : MonoBehaviour {
         InGameLogger.OnLogRecived -= AddDebugMessage;
     }
 
-    private struct TextPresentableMessage {
-        public string type;
-        public string condition;
-        public string stackTrace;
+    public void SetCustomOutputFolder(string path) {
+        customOutputPath = path;
     }
 }

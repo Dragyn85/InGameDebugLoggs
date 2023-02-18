@@ -4,7 +4,8 @@ using UnityEngine;
 [Serializable]
 public struct LogMessage {
     public LogType type;
-    public DateTime timeRecived;
+    public string typeName;
+    public string timeRecived;
     public string condition;
     public string stackTrace;
 
@@ -12,6 +13,7 @@ public struct LogMessage {
         this.condition = condition;
         this.stackTrace = stackTrace;
         this.type = type;
-        this.timeRecived = time;
+        this.typeName = type.ToString();
+        this.timeRecived = time.ToString();
     }
 }

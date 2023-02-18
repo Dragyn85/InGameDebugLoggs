@@ -41,7 +41,11 @@ public class DebuggerSettings : MonoBehaviour {
     }
     [MenuItem("DebugLogger/Select output Folder")]
     public static void SelectOutputFolder() {
-        
+        string path = EditorUtility.OpenFolderPanel("Select save folder", Application.dataPath, "DebugLogOutput");
+        var loggerOutput = FindObjectOfType<LoggerOutput>();
+        if(loggerOutput != null && !string.IsNullOrEmpty(path)) {
+            loggerOutput.SetCustomOutputFolder(path);
+        }
     }
     private static bool FindInstance() {
         if(Instance == null) {
