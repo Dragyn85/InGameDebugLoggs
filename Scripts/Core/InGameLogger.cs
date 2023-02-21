@@ -39,4 +39,8 @@ public class InGameLogger : MonoBehaviour {
         Debug.LogWarning("I am a warning!");
         Debug.LogError("I AM ERROR!");
     }
+    [ContextMenu("Add one log message")]
+    public void AddTestLogMessages() {
+        Debug.Log("Hej, jag är en log");
+    }
 }

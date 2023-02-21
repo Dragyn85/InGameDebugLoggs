@@ -1,4 +1,6 @@
-using System.IO;
+
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,10 +9,11 @@ public class DebuggerSettings : MonoBehaviour {
     static private bool logginActive;
 
     [SerializeField] private LoggerCanvas loggerUIprefab;
-    [SerializeField] bool persistantOverScenes;
+    [SerializeField] private bool persistantOverScenes;
 
     [SerializeField, HideInInspector] private static DebuggerSettings Instance;
 
+#if UNITY_EDITOR
     [MenuItem("DebugLogger/Add in Game UI")]
     public static void AddUI() {
 
@@ -19,11 +22,11 @@ public class DebuggerSettings : MonoBehaviour {
         }
         var instancedUI = FindObjectOfType<LoggerCanvas>();
 
-        if(instancedUI == null) {
+        if(instancedUI == null && Instance.loggerUIprefab != null) {
             PrefabUtility.InstantiatePrefab(Instance.loggerUIprefab, Instance.transform);
         }
         else {
-            Debug.Log("Game UI is allready present in current scene");
+            Debug.Log("Game UI is allready present in current scene or no prefab is set on the gameobject" + Instance.gameObject);
         }
     }
     
@@ -44,9 +47,10 @@ public class DebuggerSettings : MonoBehaviour {
         string path = EditorUtility.OpenFolderPanel("Select save folder", Application.dataPath, "DebugLogOutput");
         var loggerOutput = FindObjectOfType<LoggerOutput>();
         if(loggerOutput != null && !string.IsNullOrEmpty(path)) {
-            loggerOutput.SetCustomOutputFolder(path);
+            loggerOutput.SetOutputFolder(path);
         }
     }
+#endif
     private static bool FindInstance() {
         if(Instance == null) {
             Instance = FindObjectOfType<DebuggerSettings>();
@@ -57,9 +61,6 @@ public class DebuggerSettings : MonoBehaviour {
             return false;
         }
         return true;
-    }
-    public static void ToggleInGameLoggerActive() {
-
     }
 
     private void OnAwake() {

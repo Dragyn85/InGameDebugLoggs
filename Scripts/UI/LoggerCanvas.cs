@@ -4,20 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LoggerCanvas : MonoBehaviour {
-    [SerializeField] DebugMessage debugMessagePrefab;
-    [SerializeField] Transform contenTransform;
-    [SerializeField] ScrollRect scrollRect;
-    Dictionary<LogType,bool> showByType= new Dictionary<LogType,bool>();
+    [SerializeField] private DebugMessage debugMessagePrefab;
+    [SerializeField] private DetailedMessageInfo detailedMessageInfo;
+    [SerializeField] private Transform contenTransform;
+    [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private ToggleAbleCanvasGroup toggleAbleCavasGroup;
+    [SerializeField] private bool showOnMessageRecived;
+
+    private Dictionary<LogType,bool> showByType= new Dictionary<LogType,bool>();
 
     private void Awake() {
         AddLogTypesWithDefaultShowValue();
     }
 
     private void AddDebugMessage(LogMessage message) {
+        bool shouldShowMessage = showByType[message.type];
         DebugMessage debugMessage = Instantiate(debugMessagePrefab, contenTransform);
         debugMessage.SetDebugMessageInfo(message);
-        debugMessage.gameObject.SetActive(showByType[debugMessage.MessageType]);
+        debugMessage.SetDetailedMessageInfoPanel(detailedMessageInfo);
+        debugMessage.gameObject.SetActive(shouldShowMessage);
         scrollRect.verticalNormalizedPosition = 0f;
+        if(showOnMessageRecived && shouldShowMessage && !toggleAbleCavasGroup.IsActive) {
+            toggleAbleCavasGroup.ToggleCanvas();
+        }
     }
 
     private void ActivateTypeOfLogMessages(bool setActive, LogType affectedType) {
@@ -28,6 +37,7 @@ public class LoggerCanvas : MonoBehaviour {
             if(displayedMessage.MessageType == affectedType) {
                 displayedMessage.gameObject.SetActive(setActive);
             }
+            //displayedMessages[i].HideType(affectedType, setActive);
         }
     }
     private void AddLogTypesWithDefaultShowValue() {
@@ -44,28 +54,7 @@ public class LoggerCanvas : MonoBehaviour {
     private void OnDisable() {
         InGameLogger.OnLogRecived -= AddDebugMessage;
     }
-    public void ToggleLogActivation() {
-        var type = LogType.Log;
-        showByType[type] = !showByType[type];
-        ActivateTypeOfLogMessages(showByType[type], type);
-    }
-    public void ToggleWarningActivation() {
-        var type = LogType.Warning;
-        showByType[type] = !showByType[type];
-        ActivateTypeOfLogMessages(showByType[type], type);
-        var type2 = LogType.Assert;
-        showByType[type2] = !showByType[type2];
-        ActivateTypeOfLogMessages(showByType[type2], type2);
-    }
-    public void ToggleErrorActivation() {
-        var type = LogType.Error;
-        showByType[type] = !showByType[type];
-        ActivateTypeOfLogMessages(showByType[type], type);
-        var type2 = LogType.Exception;
-        showByType[type2] = !showByType[type2];
-        ActivateTypeOfLogMessages(showByType[type2], type2);
-    }
-
+    
     public void ToggleType(LogType logType) {
         showByType[logType] = !showByType[logType];
         ActivateTypeOfLogMessages(showByType[logType], logType);

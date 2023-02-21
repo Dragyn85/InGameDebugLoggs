@@ -2,6 +2,7 @@
 using System.IO;
 using System;
 using UnityEditor;
+using TMPro;
 
 public class LoggerOutput : MonoBehaviour {
     static string DEFAULT_PATH = "/Logger";
@@ -10,16 +11,12 @@ public class LoggerOutput : MonoBehaviour {
 
     [SerializeField, HideInInspector] private string customOutputPath;
 
+    public string outputPath => customOutputPath;
+
     private void AddDebugMessage(LogMessage message) {
         string newLogEntryAsJson = JsonUtility.ToJson(message, true);
-        string path;
-        if(string.IsNullOrEmpty(customOutputPath)) {
-            path = $"{Application.persistentDataPath}{DEFAULT_PATH}";
-        }
-        else {
-            path = customOutputPath;
-        }
-
+        string path = GetSavePath();
+        
         if(!Directory.Exists(path)) {
             Directory.CreateDirectory(path);
         }
@@ -39,7 +36,15 @@ public class LoggerOutput : MonoBehaviour {
         InGameLogger.OnLogRecived -= AddDebugMessage;
     }
 
-    public void SetCustomOutputFolder(string path) {
+    public void SetOutputFolder(string path) {
         customOutputPath = path;
+    }
+
+    public string GetSavePath() {
+        string path = $"{Application.persistentDataPath}{DEFAULT_PATH}{FILENAME}{FILE_EXTENSION}";
+        if(!string.IsNullOrEmpty(customOutputPath)) {
+            path= customOutputPath;
+        }
+        return path;
     }
 }

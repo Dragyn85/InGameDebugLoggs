@@ -57,5 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfd0c52a8cf6034d96e9c24995c0749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loggerUIprefab: {fileID: 5773802586833654484, guid: 41d2e8de7f5b15e4f9c102a040124189, type: 3}
+  loggerUIprefab: {fileID: 6590216427053608954, guid: 41d2e8de7f5b15e4f9c102a040124189, type: 3}
   persistantOverScenes: 0
