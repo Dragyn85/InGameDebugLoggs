@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using SFB;
 using TMPro;
 
-public class SettingsWIndow: MonoBehaviour
-{
+public class SettingsWIndow : MonoBehaviour {
     [SerializeField] private Toggle loggerActivationToggle;
     [SerializeField] private TMP_Text inputField;
     [SerializeField] private ToggleAbleCanvasGroup toggleAbleCanvasGroup;
@@ -24,7 +23,11 @@ public class SettingsWIndow: MonoBehaviour
         debuggerSettings.ActivateLogging(value);
     }
     private void HandleActivationChanged(bool Activated) {
-        inputField.text = loggerOutput.GetSavePath();
-        loggerActivationToggle.isOn = debuggerSettings.IsLoggingActive;
+        if(loggerOutput != null) {
+            inputField.text = loggerOutput.GetSavePath();
+        }
+        if(debuggerSettings != null) {
+            loggerActivationToggle.isOn = debuggerSettings.IsLoggingActive;
+        }
     }
 }
