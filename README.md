@@ -16,5 +16,7 @@ Use the UI to see Logs in game, can be built and seen in game.
 If you want toggle visibilty with a key instead of a button, turn the image off on the "LogButton".
 There is also an option for selecting hotkey key - default is 'L'.
 
+click a message to get more information about it.
+
 #### The LoggerOutput
 Is used to save logs to an file. Default output path is in the Application.persistentDataPath + Logger/output.txt
