@@ -7,7 +7,11 @@ public class InGameLogger : MonoBehaviour {
     private bool isActive;
     private List<LogMessage> registredMessages = new List<LogMessage>();
 
-    public bool IsActive { get { return isActive; } }
+    public bool IsActive {
+        get {
+            return isActive;
+        }
+    }
 
     public List<LogMessage> GetAllMessages => registredMessages;
 
@@ -45,6 +49,7 @@ public class InGameLogger : MonoBehaviour {
         Debug.LogWarning("I am a warning!");
         Debug.LogError("I AM ERROR!");
     }
+
     [ContextMenu("Add one log message")]
     public void AddTestLogMessages() {
         Debug.Log("Hi, I am a log");

@@ -59,9 +59,9 @@ public class InGameConsole : MonoBehaviour {
             if(displayedMessage.MessageType == affectedType) {
                 displayedMessage.gameObject.SetActive(setActive);
             }
-            //displayedMessages[i].HideType(affectedType, setActive);
         }
     }
+
     private void AddLogTypesWithDefaultShowValue() {
         showByType.Add(LogType.Log, true);
         showByType.Add(LogType.Error, true);
@@ -73,6 +73,7 @@ public class InGameConsole : MonoBehaviour {
     private void OnEnable() {
         InGameLogger.OnLogRecived += AddDebugMessage;
     }
+
     private void OnDisable() {
         InGameLogger.OnLogRecived -= AddDebugMessage;
     }

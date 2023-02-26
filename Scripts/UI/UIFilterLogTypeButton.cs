@@ -8,8 +8,8 @@ public class UIFilterLogTypeButton : MonoBehaviour {
     [SerializeField] private InGameConsole consoleCanvas;
 
     private void Awake() {
-        GetComponent<Button>().onClick.AddListener(() =>consoleCanvas.ToggleType(logType));
+        GetComponent<Button>().onClick.AddListener(() => consoleCanvas.ToggleType(logType));
     }
 
-    
+
 }

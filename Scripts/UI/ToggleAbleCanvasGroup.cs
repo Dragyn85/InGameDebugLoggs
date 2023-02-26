@@ -11,7 +11,11 @@ public class ToggleAbleCanvasGroup : MonoBehaviour {
 
     private bool isVisible;
 
-    public bool IsActive => isVisible;
+    public bool IsActive {
+        get {
+            return isVisible;
+        }
+    }
 
     private void Awake() {
         SetVisible(startActive);
@@ -20,11 +24,13 @@ public class ToggleAbleCanvasGroup : MonoBehaviour {
     private void OnValidate() {
         canvasGroup = GetComponent<CanvasGroup>();
     }
+
     private void Update() {
         if(Input.GetKeyDown(toggleVisibilityButton)) {
             ToggleVisibility();
         }
     }
+
     public void SetVisible(bool visible) {
         isVisible = visible;
         canvasGroup.alpha = isVisible ? 1 : 0;

@@ -24,10 +24,12 @@ public class SettingsWIndow : MonoBehaviour {
 
     private void EventRegistration() {
         toggleAbleCanvasGroup.OnActivationChanged += HandleActivationChanged;
+
         loggerActivationToggle.onValueChanged.AddListener(HandleLoggerActivationToggleChanged);
         autoScrollToggle.onValueChanged.AddListener(HandleOnAutoScrollChanged);
         autoShowOnMessage.onValueChanged.AddListener(HandleOnAutoShowMessageChanged);
     }
+
     #region Handle settings changed methods
     private void HandleOnAutoShowMessageChanged(bool value) {
         inGameConsole.IsShowingOnMessage = value;
@@ -77,6 +79,7 @@ public class SettingsWIndow : MonoBehaviour {
         }
     }
     #endregion
+
     private void OnDestroy() {
         toggleAbleCanvasGroup.OnActivationChanged -= HandleActivationChanged;
     }

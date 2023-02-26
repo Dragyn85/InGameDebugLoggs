@@ -2,8 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DebugMessage : MonoBehaviour, IPointerClickHandler
-{
+public class DebugMessage : MonoBehaviour, IPointerClickHandler {
     [SerializeField] private TMP_Text messageTMP_text;
     [SerializeField] private Color messageColor = Color.white;
     [SerializeField] private Color warningAndAssertColor = Color.yellow;
@@ -12,7 +11,11 @@ public class DebugMessage : MonoBehaviour, IPointerClickHandler
     private LogMessage message;
     private DetailedMessageInfo detailedMessageInfo;
 
-    public LogType MessageType => message.type;
+    public LogType MessageType {
+        get {
+            return message.type;
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData) {
         detailedMessageInfo.gameObject.SetActive(true);
@@ -20,7 +23,6 @@ public class DebugMessage : MonoBehaviour, IPointerClickHandler
     }
 
     public void SetDebugMessageInfo(LogMessage message) {
-
         this.message = message;
         SetTextColor();
         messageTMP_text.SetText(message.condition);
