@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4557349911124858071}
-  startActive: 1
+  startActive: 0
   toggleVisibilityButton: 0
 --- !u!114 &4409218462301482566
 MonoBehaviour:

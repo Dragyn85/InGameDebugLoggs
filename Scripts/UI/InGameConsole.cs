@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class InGameConsole : MonoBehaviour {
     [SerializeField] private DebugMessage debugMessagePrefab;
-    [SerializeField] private DetailedMessageInfo detailedMessageInfo;
     [SerializeField] private Transform contenTransform;
     [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private DetailedMessageInfo detailedMessageInfo;
     [SerializeField] private ToggleAbleCanvasGroup toggleAbleCavasGroup;
     [SerializeField] private bool isShowingOnMessage;
     [SerializeField] private bool autoScroll;

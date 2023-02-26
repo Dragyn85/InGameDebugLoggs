@@ -2,24 +2,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DetailedMessageInfo : MonoBehaviour, IPointerClickHandler
-{
+public class DetailedMessageInfo : MonoBehaviour, IPointerClickHandler {
     [SerializeField] TMP_Text typeText;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text conditionText;
     [SerializeField] TMP_Text stackTrace;
 
-    public void AssignMessage(LogMessage message) {
+    [SerializeField] private ToggleAbleCanvasGroup toggleAbleCanvasGroup;
+
+    public void ShowMessage(LogMessage message) {
         typeText.SetText(message.typeName);
         timeText.SetText(message.timeRecived);
         conditionText.SetText(message.condition);
         stackTrace.SetText(message.stackTrace);
-    }
-    public void OnPointerClick(PointerEventData eventData) {
-        gameObject.SetActive(false);
+
+        if(toggleAbleCanvasGroup != null ) {
+            toggleAbleCanvasGroup.SetVisible(true);
+        }
     }
 
-    private void Awake() {
-        gameObject.SetActive(false);
+    public void OnPointerClick(PointerEventData eventData) {
+        if(toggleAbleCanvasGroup != null) {
+            toggleAbleCanvasGroup.SetVisible(false);
+        }
     }
 }

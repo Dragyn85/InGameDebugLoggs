@@ -574,7 +574,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1438896118442262876}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999978
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -864,7 +864,6 @@ GameObject:
   - component: {fileID: 4557349911124858068}
   - component: {fileID: 4557349911124858071}
   - component: {fileID: 4557349911124858070}
-  - component: {fileID: 2001061119605784472}
   m_Layer: 5
   m_Name: Console Window
   m_TagString: Untagged
@@ -959,24 +958,6 @@ MonoBehaviour:
   canvasGroup: {fileID: 4557349911124858071}
   startActive: 1
   toggleVisibilityButton: 108
---- !u!114 &2001061119605784472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4557349911124858066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffeedb438361fcf4ca101f4558356c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugMessagePrefab: {fileID: 1984301750321427581, guid: bd86f711e2c3f794ea5e6afc4359fef4, type: 3}
-  detailedMessageInfo: {fileID: 0}
-  contenTransform: {fileID: 4879242143250576800}
-  scrollRect: {fileID: 3979988671454456885}
-  toggleAbleCavasGroup: {fileID: 4557349911124858070}
-  showOnMessageRecived: 0
 --- !u!1 &4557349911534610848
 GameObject:
   m_ObjectHideFlags: 0

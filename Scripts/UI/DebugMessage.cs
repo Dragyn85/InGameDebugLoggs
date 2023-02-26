@@ -18,8 +18,7 @@ public class DebugMessage : MonoBehaviour, IPointerClickHandler {
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        detailedMessageInfo.gameObject.SetActive(true);
-        detailedMessageInfo.AssignMessage(message);
+        detailedMessageInfo.ShowMessage(message);
     }
 
     public void SetDebugMessageInfo(LogMessage message) {
