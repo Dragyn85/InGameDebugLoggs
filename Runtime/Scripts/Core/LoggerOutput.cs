@@ -8,7 +8,7 @@ public class LoggerOutput : MonoBehaviour {
     static string FILENAME = "output";
     static string FILE_EXTENSION = ".txt";
 
-    [SerializeField, HideInInspector] private string customOutputPath;
+    [SerializeField] private string customOutputPath;
 
     private void AddDebugMessage(LogMessage message) {
         string newLogEntryAsJson = JsonUtility.ToJson(message, true);
@@ -47,7 +47,7 @@ public class LoggerOutput : MonoBehaviour {
     }
 
 #if UNITY_EDITOR
-    public static void SelectOutputFolder() {
+    public void SelectOutputFolder() {
         string path = EditorUtility.OpenFolderPanel("Select save folder", Application.dataPath, "DebugLogOutput");
         var loggerOutput = FindObjectOfType<LoggerOutput>();
         if(loggerOutput != null && !string.IsNullOrEmpty(path)) {

@@ -461,9 +461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugMessagePrefab: {fileID: 1984301750321427581, guid: bd86f711e2c3f794ea5e6afc4359fef4, type: 3}
-  detailedMessageInfo: {fileID: 1879869764994335263}
   contenTransform: {fileID: 8926333857346993576}
   scrollRect: {fileID: 1111820822118032445}
+  detailedMessageInfo: {fileID: 1879869764994335263}
   toggleAbleCavasGroup: {fileID: 533900996102069470}
   isShowingOnMessage: 0
   autoScroll: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &6199202201894072931
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2073066184977191509, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.29684514
       objectReference: {fileID: 0}
     - target: {fileID: 2073066184977191509, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_Value
@@ -937,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879242143250576800, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000028967857
+      value: -1095.4735
       objectReference: {fileID: 0}
     - target: {fileID: 6586273465518695659, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1186,3 +1186,4 @@ MonoBehaviour:
   timeText: {fileID: 6408546967830669439}
   conditionText: {fileID: 3540511476429061479}
   stackTrace: {fileID: 7835361470217482087}
+  toggleAbleCanvasGroup: {fileID: 0}
