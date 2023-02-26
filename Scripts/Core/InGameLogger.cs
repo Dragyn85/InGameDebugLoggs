@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class InGameLogger : MonoBehaviour {
     public static event Action<LogMessage> OnLogRecived;
+    private bool isActive;
+    private List<LogMessage> registredMessages = new List<LogMessage>();
 
-    private DebuggerSettings settings;
+    public bool IsActive { get { return isActive; } }
 
-    List<LogMessage> registredMessages = new List<LogMessage>();
     public List<LogMessage> GetAllMessages => registredMessages;
-    private void Awake() {
-        settings = GetComponent<DebuggerSettings>();
 
-        if(settings == null) {
-            ActivateLogTracking(true);
+    private void OnEnable() {
+        ActivateLogTracking(true);
+    }
+
+    public void ActivateLogTracking(bool activate) {
+        if(activate) {
+            if(!isActive) {
+                Application.logMessageReceived += HandleLogMessageReceived;
+                isActive = true;
+            }
         }
         else {
-            settings.OnActivationChanged += ActivateLogTracking;
-            ActivateLogTracking(settings.IsLoggingActive);
+            Application.logMessageReceived -= HandleLogMessageReceived;
+            isActive = false;
         }
-        
     }
 
-    public void SetActive(bool setActive) {
-        ActivateLogTracking(setActive);
-    }
-
-    private void ActivateLogTracking(bool activate) {
-        Application.logMessageReceived -= HandleLogMessageReceived;
-        if(activate) {
-            Application.logMessageReceived += HandleLogMessageReceived;
-        }
+    private void OnDisable() {
+        ActivateLogTracking(false);
     }
     private void HandleLogMessageReceived(string condition, string stackTrace, LogType type) {
 

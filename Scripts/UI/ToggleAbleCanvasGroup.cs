@@ -5,30 +5,35 @@ using UnityEngine;
 public class ToggleAbleCanvasGroup : MonoBehaviour {
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] private bool startActive;
+    [SerializeField] private KeyCode toggleVisibilityButton = KeyCode.L;
 
     public Action<bool> OnActivationChanged;
 
-    private bool isActive;
+    private bool isVisible;
 
-    public bool IsActive => isActive;
+    public bool IsActive => isVisible;
 
     private void Awake() {
-        ToggleCanvas();
-        if(isActive != startActive) {
-            ToggleCanvas();
-        }
+        SetVisible(startActive);
     }
+
     private void OnValidate() {
         canvasGroup = GetComponent<CanvasGroup>();
     }
-
-    public void ToggleCanvas() {
-        if(canvasGroup != null) {
-            isActive = !isActive;
-            canvasGroup.alpha = isActive ? 1 : 0;
-            canvasGroup.blocksRaycasts = isActive;
-            canvasGroup.interactable = isActive;
-            OnActivationChanged?.Invoke(isActive);
+    private void Update() {
+        if(Input.GetKeyDown(toggleVisibilityButton)) {
+            ToggleVisibility();
         }
+    }
+    public void SetVisible(bool visible) {
+        isVisible = visible;
+        canvasGroup.alpha = isVisible ? 1 : 0;
+        canvasGroup.blocksRaycasts = isVisible;
+        canvasGroup.interactable = isVisible;
+        OnActivationChanged?.Invoke(isVisible);
+    }
+
+    public void ToggleVisibility() {
+        SetVisible(!IsActive);
     }
 }

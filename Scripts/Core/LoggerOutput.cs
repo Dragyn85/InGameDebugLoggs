@@ -3,6 +3,7 @@ using System.IO;
 using System;
 using UnityEditor;
 using TMPro;
+using Codice.CM.Common.Tree;
 
 public class LoggerOutput : MonoBehaviour {
     static string DEFAULT_PATH = "/Logger";
@@ -10,8 +11,6 @@ public class LoggerOutput : MonoBehaviour {
     static string FILE_EXTENSION = ".txt";
 
     [SerializeField, HideInInspector] private string customOutputPath;
-
-    public string outputPath => customOutputPath;
 
     private void AddDebugMessage(LogMessage message) {
         string newLogEntryAsJson = JsonUtility.ToJson(message, true);
@@ -39,6 +38,17 @@ public class LoggerOutput : MonoBehaviour {
     public void SetOutputFolder(string path) {
         customOutputPath = path;
     }
+#if UNITY_EDITOR
+    public static void SelectOutputFolder() {
+        string path = EditorUtility.OpenFolderPanel("Select save folder", Application.dataPath, "DebugLogOutput");
+        var loggerOutput = FindObjectOfType<LoggerOutput>();
+        if(loggerOutput != null && !string.IsNullOrEmpty(path)) {
+            loggerOutput.SetOutputFolder(path);
+        }
+    }
+
+
+#endif
 
     public string GetSavePath() {
         string path = $"{Application.persistentDataPath}{DEFAULT_PATH}{FILENAME}{FILE_EXTENSION}";

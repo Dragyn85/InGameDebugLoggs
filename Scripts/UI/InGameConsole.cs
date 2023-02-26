@@ -3,15 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoggerCanvas : MonoBehaviour {
+public class InGameConsole : MonoBehaviour {
     [SerializeField] private DebugMessage debugMessagePrefab;
     [SerializeField] private DetailedMessageInfo detailedMessageInfo;
     [SerializeField] private Transform contenTransform;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private ToggleAbleCanvasGroup toggleAbleCavasGroup;
-    [SerializeField] private bool showOnMessageRecived;
+    [SerializeField] private bool isShowingOnMessage;
+    [SerializeField] private bool autoScroll;
 
-    private Dictionary<LogType,bool> showByType= new Dictionary<LogType,bool>();
+    private Dictionary<LogType, bool> showByType = new Dictionary<LogType, bool>();
+
+    public bool IsAutoScrolling {
+        get {
+            return autoScroll;
+        }
+        set {
+            autoScroll = value;
+        }
+    }
+
+    public bool IsShowingOnMessage {
+        get {
+            return isShowingOnMessage;
+        }
+        set {
+            isShowingOnMessage = value;
+        }
+    }
 
     private void Awake() {
         AddLogTypesWithDefaultShowValue();
@@ -23,15 +42,18 @@ public class LoggerCanvas : MonoBehaviour {
         debugMessage.SetDebugMessageInfo(message);
         debugMessage.SetDetailedMessageInfoPanel(detailedMessageInfo);
         debugMessage.gameObject.SetActive(shouldShowMessage);
-        scrollRect.verticalNormalizedPosition = 0f;
-        if(showOnMessageRecived && shouldShowMessage && !toggleAbleCavasGroup.IsActive) {
-            toggleAbleCavasGroup.ToggleCanvas();
+
+        if(autoScroll) {
+            scrollRect.verticalNormalizedPosition = 0f;
+        }
+        if(isShowingOnMessage && shouldShowMessage) {
+            toggleAbleCavasGroup.SetVisible(true);
         }
     }
 
     private void ActivateTypeOfLogMessages(bool setActive, LogType affectedType) {
-        DebugMessage[] displayedMessages =  contenTransform.GetComponentsInChildren<DebugMessage>(true);
-        
+        DebugMessage[] displayedMessages = contenTransform.GetComponentsInChildren<DebugMessage>(true);
+
         for(int i = 0; i < displayedMessages.Length; i++) {
             var displayedMessage = displayedMessages[i];
             if(displayedMessage.MessageType == affectedType) {
@@ -54,7 +76,7 @@ public class LoggerCanvas : MonoBehaviour {
     private void OnDisable() {
         InGameLogger.OnLogRecived -= AddDebugMessage;
     }
-    
+
     public void ToggleType(LogType logType) {
         showByType[logType] = !showByType[logType];
         ActivateTypeOfLogMessages(showByType[logType], logType);
