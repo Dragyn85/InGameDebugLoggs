@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameLogger : MonoBehaviour {
+    [SerializeField] private bool dontDestroyOnLoad;
+
     public static event Action<LogMessage> OnLogRecived;
+
     private bool isActive;
     private List<LogMessage> registredMessages = new List<LogMessage>();
 
@@ -41,6 +44,12 @@ public class InGameLogger : MonoBehaviour {
         var logMessage = new LogMessage(condition, stackTrace, type, time);
         registredMessages.Add(logMessage);
         OnLogRecived?.Invoke(logMessage);
+    }
+
+    private void Awake() {
+        if(dontDestroyOnLoad) {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     [ContextMenu("Add one of each message type")]
