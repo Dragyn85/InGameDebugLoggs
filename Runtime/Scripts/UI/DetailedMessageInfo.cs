@@ -12,7 +12,7 @@ public class DetailedMessageInfo : MonoBehaviour, IPointerClickHandler {
 
     public void ShowMessage(LogMessage message) {
         typeText.SetText(message.typeName);
-        timeText.SetText(message.timeRecived);
+        timeText.SetText(message.timeReceived);
         conditionText.SetText(message.condition);
         stackTrace.SetText(message.stackTrace);
 
