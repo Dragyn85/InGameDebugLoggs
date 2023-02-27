@@ -8,13 +8,13 @@ public class debugSpammer : MonoBehaviour {
 
     void ShowDebugMessage() {
         if(counter % 3 == 0) {
-            Debug.Log("Hej Hej, Vanlig log" + counter);
+            Debug.Log("Normal Log " + counter);
         }
         else if((counter + 1) % 3 == 0) {
-            Debug.LogWarning("Hej Hej, En varning!" + counter);
+            Debug.LogWarning("You got a warning! " + counter);
         }
         else if((counter + 2) % 3 == 0) {
-            Debug.LogError("HEJ HEJ!!! FEEEEEEL!" + counter);
+            Debug.LogError("ERROR! " + counter);
         }
 
         counter++;
