@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,11 +45,16 @@ public class InGameConsole : MonoBehaviour {
         debugMessage.gameObject.SetActive(shouldShowMessage);
 
         if(autoScroll) {
-            scrollRect.verticalNormalizedPosition = 0f;
+            StartCoroutine(ScrollToButtomNextFrame());
         }
         if(isShowingOnMessage && shouldShowMessage) {
             toggleAbleCavasGroup.SetVisible(true);
         }
+    }
+
+    private IEnumerator ScrollToButtomNextFrame() {
+        yield return null;
+        scrollRect.verticalNormalizedPosition = 0f;
     }
 
     private void ActivateTypeOfLogMessages(bool setActive, LogType affectedType) {
