@@ -9,14 +9,21 @@ A tool that lets you have access to debug logs in game while playing, even in bu
 #### How to use?
 1. Import this package by downloading it and add it with the unity package manager
 2. Drag a "InGameLogger.prefab" from the Prefabs folder inside the package into the scene.
-3. Use the Menu item "Debug logger" to add the customization options you want.
+3. Select output path on "LoggerOutput" component on the prefab instance.
 
 #### The UI
-Use the UI to see Logs in game, can be built and seen in game.
-If you want toggle visibilty with a key instead of a button, turn the image off on the "LogButton".
-There is also an option for selecting hotkey key - default is 'L'.
+Toggle visibilty with "L" - buttong, can be changed on the "Console Window" gameobject inside the prefabe.
 
 click a message to get more information about it.
+##### NOTE - you need a EventSystem to interact with the UI "GameObject > UI > EventSystem"
+
+##### Settings window: 
+- start/stop logging
+- auto scroll when receiving message
+- auto show when receiving message
+
+showing Output path if a LoggerOutput is present.
+Can be removed
 
 #### The LoggerOutput
-Is used to save logs to an file. Default output path is in the Application.persistentDataPath + Logger/output.txt
+Is used to save logs to an file. Default output path is in the Application.persistentDataPath + Logger/output - [Timestamp].txt
