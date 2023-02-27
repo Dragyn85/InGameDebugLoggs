@@ -50,7 +50,7 @@ namespace DragynGames.InGameLogger {
         private string GetFileName() {
             StringBuilder sb = new StringBuilder();
             sb.Append(FILENAME);
-            if(!newFileOnSession) {
+            if(newFileOnSession) {
                 sb.Append(" - ");
                 sb.Append(timeStamp);
             }
@@ -80,8 +80,12 @@ namespace DragynGames.InGameLogger {
 #if UNITY_EDITOR
         public string SelectOutputFolder() {
             string path = EditorUtility.OpenFolderPanel("Select save folder", Application.dataPath, "DebugLogOutput");
-
+            
             return path;
+        }
+       
+        private void OnValidate() {
+            customOutputPath = EditorPrefs.GetString("InGameLoggerPath");    
         }
 #endif
     }

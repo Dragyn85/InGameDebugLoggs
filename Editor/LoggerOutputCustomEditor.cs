@@ -18,9 +18,10 @@ namespace DragynGames.InGameLogger.Editor {
             base.OnInspectorGUI();
             serializedObject.Update();
 
-            //SerializedProperty outputPath = loggerOutputProperty.FindPropertyRelative("customOutputPath");
             if(GUILayout.Button("Select Folder") && loggerOutput != null) {
-                loggerOutputProperty.stringValue = loggerOutput.SelectOutputFolder();
+                string newPath = loggerOutput.SelectOutputFolder();
+                loggerOutputProperty.stringValue = newPath;
+                EditorPrefs.SetString("InGameLoggerPath", newPath);
             }
             serializedObject.ApplyModifiedProperties();
         }
