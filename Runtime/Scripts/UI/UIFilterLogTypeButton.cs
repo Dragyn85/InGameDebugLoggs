@@ -9,9 +9,10 @@ namespace DragynGames.InGameLogger {
         [SerializeField] private LogType logType;
         [SerializeField] private InGameConsole consoleCanvas;
 
-        private void Awake() {
-            //GetComponent<Button>().onClick.AddListener(() => consoleCanvas.ToggleType(logType));
-            Toggle toggle = GetComponent<Toggle>();
+        private Toggle toggle;
+
+        private void Start() {
+            toggle = GetComponent<Toggle>();
 
             toggle.isOn = consoleCanvas.IsFilterActive(logType);
             toggle.onValueChanged.AddListener((bool value) => consoleCanvas.FilterLogType(logType, value));
