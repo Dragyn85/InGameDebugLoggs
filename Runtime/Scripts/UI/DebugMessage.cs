@@ -2,43 +2,46 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DebugMessage : MonoBehaviour, IPointerClickHandler {
-    [SerializeField] private TMP_Text messageTMP_text;
-    [SerializeField] private Color messageColor = Color.white;
-    [SerializeField] private Color warningAndAssertColor = Color.yellow;
-    [SerializeField] private Color errorAndExceptionColor = Color.red;
+namespace DragynGames.InGameLogger {
 
-    private LogMessage message;
-    private DetailedMessageInfo detailedMessageInfo;
+    public class DebugMessage : MonoBehaviour, IPointerClickHandler {
+        [SerializeField] private TMP_Text messageTMP_text;
+        [SerializeField] private Color messageColor = Color.white;
+        [SerializeField] private Color warningAndAssertColor = Color.yellow;
+        [SerializeField] private Color errorAndExceptionColor = Color.red;
 
-    public LogType MessageType {
-        get {
-            return message.type;
+        private LogMessage message;
+        private DetailedMessageInfo detailedMessageInfo;
+
+        public LogType MessageType {
+            get {
+                return message.type;
+            }
         }
-    }
 
-    public void OnPointerClick(PointerEventData eventData) {
-        detailedMessageInfo.ShowMessage(message);
-    }
-
-    public void SetDebugMessageInfo(LogMessage message) {
-        this.message = message;
-        SetTextColor();
-        messageTMP_text.SetText(message.condition);
-    }
-
-    private void SetTextColor() {
-        Color color = messageColor;
-        if(MessageType == LogType.Error || MessageType == LogType.Exception) {
-            color = errorAndExceptionColor;
+        public void OnPointerClick(PointerEventData eventData) {
+            detailedMessageInfo.ShowMessage(message);
         }
-        else if(MessageType == LogType.Warning || MessageType == LogType.Assert) {
-            color = warningAndAssertColor;
-        }
-        messageTMP_text.color = color;
-    }
 
-    public void SetDetailedMessageInfoPanel(DetailedMessageInfo detailedMessageInfo) {
-        this.detailedMessageInfo = detailedMessageInfo;
+        public void SetDebugMessageInfo(LogMessage message) {
+            this.message = message;
+            SetTextColor();
+            messageTMP_text.SetText(message.condition);
+        }
+
+        private void SetTextColor() {
+            Color color = messageColor;
+            if(MessageType == LogType.Error || MessageType == LogType.Exception) {
+                color = errorAndExceptionColor;
+            }
+            else if(MessageType == LogType.Warning || MessageType == LogType.Assert) {
+                color = warningAndAssertColor;
+            }
+            messageTMP_text.color = color;
+        }
+
+        public void SetDetailedMessageInfoPanel(DetailedMessageInfo detailedMessageInfo) {
+            this.detailedMessageInfo = detailedMessageInfo;
+        }
     }
 }

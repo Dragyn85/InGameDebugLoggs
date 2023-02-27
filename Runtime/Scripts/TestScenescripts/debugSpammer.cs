@@ -1,22 +1,25 @@
-    using UnityEngine;
+using UnityEngine;
 
-public class debugSpammer : MonoBehaviour {
-    int counter;
-    private void Awake() {
-        InvokeRepeating("ShowDebugMessage", 1, 1);
-    }
+namespace DragynGames.InGameLogger {
 
-    void ShowDebugMessage() {
-        if(counter % 3 == 0) {
-            Debug.Log("Normal Log " + counter);
-        }
-        else if((counter + 1) % 3 == 0) {
-            Debug.LogWarning("You got a warning! " + counter);
-        }
-        else if((counter + 2) % 3 == 0) {
-            Debug.LogError("ERROR! " + counter);
+    public class debugSpammer : MonoBehaviour {
+        int counter;
+        private void Awake() {
+            InvokeRepeating("ShowDebugMessage", 1, 1);
         }
 
-        counter++;
+        void ShowDebugMessage() {
+            if(counter % 3 == 0) {
+                Debug.Log("Normal Log " + counter);
+            }
+            else if((counter + 1) % 3 == 0) {
+                Debug.LogWarning("You got a warning! " + counter);
+            }
+            else if((counter + 2) % 3 == 0) {
+                Debug.LogError("ERROR! " + counter);
+            }
+
+            counter++;
+        }
     }
 }

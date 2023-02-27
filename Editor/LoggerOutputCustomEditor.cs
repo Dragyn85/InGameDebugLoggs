@@ -2,26 +2,28 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(LoggerOutput))]
-public class LoggerOutputCustomEditor : Editor
-{
-    LoggerOutput loggerOutput;
-    SerializedProperty loggerOutputProperty;
+namespace DragynGames.InGameLogger.Editor {
 
-    private void OnEnable() {
-        loggerOutput = serializedObject.targetObject as LoggerOutput;
-        loggerOutputProperty = serializedObject.FindProperty("customOutputPath");
-    }
-    
-    public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
-        serializedObject.Update();
+    [CustomEditor(typeof(LoggerOutput))]
+    public class LoggerOutputCustomEditor : UnityEditor.Editor {
+        LoggerOutput loggerOutput;
+        SerializedProperty loggerOutputProperty;
 
-        //SerializedProperty outputPath = loggerOutputProperty.FindPropertyRelative("customOutputPath");
-        if(GUILayout.Button("Select Folder") && loggerOutput != null) {
-            loggerOutputProperty.stringValue = loggerOutput.SelectOutputFolder();
+        private void OnEnable() {
+            loggerOutput = serializedObject.targetObject as LoggerOutput;
+            loggerOutputProperty = serializedObject.FindProperty("customOutputPath");
         }
-        serializedObject.ApplyModifiedProperties();
+
+        public override void OnInspectorGUI() {
+            base.OnInspectorGUI();
+            serializedObject.Update();
+
+            //SerializedProperty outputPath = loggerOutputProperty.FindPropertyRelative("customOutputPath");
+            if(GUILayout.Button("Select Folder") && loggerOutput != null) {
+                loggerOutputProperty.stringValue = loggerOutput.SelectOutputFolder();
+            }
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }
 #endif
