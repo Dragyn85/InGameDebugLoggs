@@ -527,7 +527,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &6199202201894072931
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,11 +788,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 5773802586833654488}
     m_Modifications:
     - target: {fileID: 736159976, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: loggerCanvas
+      propertyPath: consoleCanvas
       value: 
       objectReference: {fileID: 6590216427053608954}
     - target: {fileID: 1211371261, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: loggerCanvas
+      propertyPath: consoleCanvas
       value: 
       objectReference: {fileID: 6590216427053608954}
     - target: {fileID: 1438896118442262876, guid: e3624921525028a49b79a8abfc174a63, type: 3}
@@ -802,10 +802,6 @@ PrefabInstance:
     - target: {fileID: 1438896118442262876, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001061119605784472, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: detailedMessageInfo
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2001517776765123694, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchorMax.y
@@ -821,14 +817,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2001517776765123694, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073066184977191509, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_Size
-      value: 0.29684514
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073066184977191509, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2378536034322198913, guid: e3624921525028a49b79a8abfc174a63, type: 3}
@@ -935,10 +923,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4879242143250576800, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1095.4735
-      objectReference: {fileID: 0}
     - target: {fileID: 6586273465518695659, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -983,44 +967,23 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
+    - target: {fileID: 8354483254144227080, guid: e3624921525028a49b79a8abfc174a63, type: 3}
+      propertyPath: consoleCanvas
+      value: 
+      objectReference: {fileID: 6590216427053608954}
     - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4557349910455716296}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetVisible
-      objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ToggleAbleCanvasGroup, ResolutionGames.ProgrammingTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8863968544309423217, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8964036463499250220, guid: e3624921525028a49b79a8abfc174a63, type: 3}
-      propertyPath: loggerCanvas
+      propertyPath: consoleCanvas
       value: 
       objectReference: {fileID: 6590216427053608954}
-    m_RemovedComponents:
-    - {fileID: 2001061119605784472, guid: e3624921525028a49b79a8abfc174a63, type: 3}
+    - target: {fileID: 9115645273315883966, guid: e3624921525028a49b79a8abfc174a63, type: 3}
+      propertyPath: consoleCanvas
+      value: 
+      objectReference: {fileID: 6590216427053608954}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3624921525028a49b79a8abfc174a63, type: 3}
 --- !u!224 &533900996102069467 stripped
 RectTransform:

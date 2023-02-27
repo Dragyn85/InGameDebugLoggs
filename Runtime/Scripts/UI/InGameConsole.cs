@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,7 +59,7 @@ namespace DragynGames.InGameLogger {
             scrollRect.verticalNormalizedPosition = 0f;
         }
 
-        private void ActivateTypeOfLogMessages(bool setActive, LogType affectedType) {
+        private void ActivateTypeOfLogMessages(LogType affectedType, bool setActive) {
             DebugMessage[] displayedMessages = contenTransform.GetComponentsInChildren<DebugMessage>(true);
 
             for(int i = 0; i < displayedMessages.Length; i++) {
@@ -85,9 +86,20 @@ namespace DragynGames.InGameLogger {
             InGameLogger.OnLogRecived -= AddDebugMessage;
         }
 
+        public void FilterLogType(LogType logType, bool setFilterActive) {
+            showByType[logType] = setFilterActive;
+            ActivateTypeOfLogMessages(logType, showByType[logType]);
+        }
+
         public void ToggleType(LogType logType) {
-            showByType[logType] = !showByType[logType];
-            ActivateTypeOfLogMessages(showByType[logType], logType);
+            FilterLogType(logType,!showByType[logType]);
+        }
+
+        public bool IsFilterActive(LogType logType) {
+            if(showByType.TryGetValue(logType, out bool value)) {
+                return value;
+            }
+            return false;
         }
     }
 }
