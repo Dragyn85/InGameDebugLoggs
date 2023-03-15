@@ -1,12 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace DragynGames.InGameLogger {
 
-    public class InGameConsole : MonoBehaviour {
+    public class InGameConsole : MonoBehaviour, ICommander{
+        public event Action<string> OnCommand;
+        public static Action<string> OnAnyConsoleInput;
+
         [SerializeField] private DebugMessage debugMessagePrefab;
         [SerializeField] private Transform contenTransform;
         [SerializeField] private ScrollRect scrollRect;
@@ -14,6 +20,7 @@ namespace DragynGames.InGameLogger {
         [SerializeField] private ToggleAbleCanvasGroup toggleAbleCavasGroup;
         [SerializeField] private bool isShowingOnMessage;
         [SerializeField] private bool autoScroll;
+        [SerializeField] private TMP_InputField inputField;
 
         private Dictionary<LogType, bool> showByType = new Dictionary<LogType, bool>();
 
@@ -37,7 +44,25 @@ namespace DragynGames.InGameLogger {
 
         private void Awake() {
             AddLogTypesWithDefaultShowValue();
+            inputField.onSubmit.AddListener(inputField_OnSubmit);
         }
+
+        private void inputField_OnSubmit(string consoleInput) {
+            if(string.IsNullOrEmpty(consoleInput)) {
+                return;
+            }
+
+            DateTime time = DateTime.Now;
+            LogMessage log = new LogMessage(consoleInput, Environment.StackTrace, LogType.Log, time);
+            AddDebugMessage(log);
+
+            OnCommand?.Invoke(consoleInput);
+            OnAnyConsoleInput?.Invoke(consoleInput);
+
+            inputField.SetTextWithoutNotify(string.Empty);
+            inputField.ActivateInputField();
+        }
+
 
         private void AddDebugMessage(LogMessage message) {
             bool shouldShowMessage = showByType[message.type];
@@ -77,6 +102,13 @@ namespace DragynGames.InGameLogger {
             showByType.Add(LogType.Exception, true);
             showByType.Add(LogType.Assert, true);
         }
+        private void AddLogTypesWithDefaultLogValue() {
+            showByType.Add(LogType.Log, true);
+            showByType.Add(LogType.Error, true);
+            showByType.Add(LogType.Warning, true);
+            showByType.Add(LogType.Exception, true);
+            showByType.Add(LogType.Assert, true);
+        }
 
         private void OnEnable() {
             InGameLogger.OnLogRecived += AddDebugMessage;
@@ -92,7 +124,7 @@ namespace DragynGames.InGameLogger {
         }
 
         public void ToggleType(LogType logType) {
-            FilterLogType(logType,!showByType[logType]);
+            FilterLogType(logType, !showByType[logType]);
         }
 
         public bool IsFilterActive(LogType logType) {
@@ -103,3 +135,5 @@ namespace DragynGames.InGameLogger {
         }
     }
 }
+
+

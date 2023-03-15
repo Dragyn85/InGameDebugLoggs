@@ -12,6 +12,7 @@ namespace DragynGames.InGameLogger {
         public Action<bool> OnActivationChanged;
 
         private bool isVisible;
+        private IBlockToggle iBlockToggle;
 
         public bool IsActive {
             get {
@@ -21,6 +22,7 @@ namespace DragynGames.InGameLogger {
 
         private void Awake() {
             SetVisible(startActive);
+            iBlockToggle = GetComponent<IBlockToggle>();
         }
 
         private void OnValidate() {
@@ -42,7 +44,13 @@ namespace DragynGames.InGameLogger {
         }
 
         public void ToggleVisibility() {
-            SetVisible(!IsActive);
+            
+            if(iBlockToggle != null && !iBlockToggle.blockToggle) {
+                SetVisible(!IsActive);
+            }
         }
+    }
+    public interface IBlockToggle {
+        public bool blockToggle { get; }
     }
 }

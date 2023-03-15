@@ -12,6 +12,7 @@ namespace DragynGames.InGameLogger {
         private bool isActive;
         private List<LogMessage> registredMessages = new List<LogMessage>();
 
+        
         public bool IsActive {
             get {
                 return isActive;
