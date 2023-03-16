@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 391496738258430032}
   - component: {fileID: 391496738258430034}
   - component: {fileID: 391496738258430035}
+  - component: {fileID: 6158643340969720406}
   m_Layer: 5
   m_Name: HideMessagesButton
   m_TagString: Untagged
@@ -645,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logType: 3
+  logType: 0
   consoleCanvas: {fileID: 391496740023686411}
 --- !u!114 &391496738258430035
 MonoBehaviour:
@@ -695,6 +696,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &6158643340969720406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391496738258430033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logType: 3
+  consoleCanvas: {fileID: 391496740023686411}
 --- !u!1 &391496738269948722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,8 +2054,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2057,13 +2072,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2079,7 +2094,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_enableExtraPadding: 1
+  m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
@@ -2999,10 +3014,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391496739227692955}
-  - component: {fileID: 391496739227692951}
   - component: {fileID: 391496739227692948}
   - component: {fileID: 391496739227692949}
-  - component: {fileID: 391496739227692954}
   m_Layer: 5
   m_Name: HideWarningsButton
   m_TagString: Untagged
@@ -3031,20 +3044,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &391496739227692951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391496739227692952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logType: 2
-  consoleCanvas: {fileID: 391496740023686411}
 --- !u!114 &391496739227692948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,20 +3093,6 @@ MonoBehaviour:
       m_Calls: []
   m_IsOn: 0
 --- !u!114 &391496739227692949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391496739227692952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logType: 2
-  consoleCanvas: {fileID: 391496740023686411}
---- !u!114 &391496739227692954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3363,7 +3348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logType: 0
+  logType: 4
   consoleCanvas: {fileID: 391496740023686411}
 --- !u!114 &391496739286150096
 MonoBehaviour:
@@ -3377,7 +3362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef61ce10ddf5294f91e7bf3363991f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logType: 4
+  logType: 2
   consoleCanvas: {fileID: 391496740023686411}
 --- !u!1 &391496739294828926
 GameObject:
@@ -4001,7 +3986,7 @@ MonoBehaviour:
       m_Calls: []
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
-  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
+  m_SelectionColor: {r: 0, g: 0.37085214, b: 0.8490566, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
@@ -5382,6 +5367,11 @@ MonoBehaviour:
   isShowingOnMessage: 0
   autoScroll: 0
   inputField: {fileID: 391496739609781910}
+  messageStyleSOArray:
+  - {fileID: 11400000, guid: 43b30c9985658eb46977d399c2569464, type: 2}
+  - {fileID: 11400000, guid: 3a8e904df3c17254e9de4ffafcc2e4ec, type: 2}
+  - {fileID: 11400000, guid: c3faf10ccb74d3241af9d7238653cc21, type: 2}
+  - {fileID: 11400000, guid: b9d6417eeb4e4ff4cbed92a267292495, type: 2}
 --- !u!223 &391496740023686404
 Canvas:
   m_ObjectHideFlags: 0
