@@ -53,7 +53,7 @@ namespace DragynGames.InGameLogger {
             }
 
             DateTime time = DateTime.Now;
-            LogMessage log = new LogMessage(consoleInput, Environment.StackTrace, ConsoleLogType.ManualEntry, time);
+            LogMessage log = new LogMessage(consoleInput, string.Empty, ConsoleLogType.ManualEntry, time);
             AddDebugMessage(log);
 
             OnCommand?.Invoke(consoleInput);
@@ -141,7 +141,30 @@ namespace DragynGames.InGameLogger {
         
     }
     public enum ConsoleLogType {
-        Log, Warning, Exception, Assert, Error, ManualEntry
+        //
+        // Summary:
+        //     ConsoleLogType used for Errors. Extended from Unity LogType
+        Error,
+        //
+        // Summary:
+        //     ConsoleLogType used for Asserts. (These could also indicate an error inside Unity itself.) Extended from Unity LogType
+        Assert,
+        //
+        // Summary:
+        //     ConsoleLogType used for Warnings. Extended from Unity LogType
+        Warning,
+        //
+        // Summary:
+        //     ConsoleLogType used for regular log messages. Extended from Unity LogType
+        Log,
+        //
+        // Summary:
+        //     ConsoleLogType used for Exceptions. Extended from Unity LogType
+        Exception,
+        //
+        // Summary:
+        //     ConsoleLogType for manual console entries
+        ManualEntry
 
     }
 }

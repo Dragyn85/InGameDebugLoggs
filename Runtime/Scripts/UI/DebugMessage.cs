@@ -22,7 +22,7 @@ namespace DragynGames.InGameLogger {
         }
 
         public void SetDebugMessageInfo(LogMessage message,MessageStyleSO messageStyleSO) {
-            this.style= style;
+            this.style= messageStyleSO;
             this.message = message;
             SetTextColor();
             messageTMP_text.SetText(message.condition, messageStyleSO);
