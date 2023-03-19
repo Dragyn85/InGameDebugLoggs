@@ -6,7 +6,7 @@ namespace DragynGames.InGameLogger {
 
     [RequireComponent(typeof(Toggle))]
     public class UIFilterLogTypeButton : MonoBehaviour {
-        [SerializeField] private LogType logType;
+        [SerializeField] private ConsoleLogType logType;
         [SerializeField] private InGameConsole consoleCanvas;
 
         private Toggle toggle;

@@ -24,7 +24,7 @@ namespace DragynGames.InGameLogger.Editor {
 
         private static void AddInGameLogger() {
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PREFAB_PATH);
-            GameObject sceneObject = Instantiate(prefab);
+            var sceneObject =PrefabUtility.InstantiatePrefab(prefab);
 
             sceneObject.name = "In Game Logger";
         }

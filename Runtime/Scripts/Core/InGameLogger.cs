@@ -12,6 +12,8 @@ namespace DragynGames.InGameLogger {
         private bool isActive;
         private List<LogMessage> registredMessages = new List<LogMessage>();
 
+        
+        
         public bool IsActive {
             get {
                 return isActive;
@@ -46,9 +48,9 @@ namespace DragynGames.InGameLogger {
         }
 
         private void HandleLogMessageReceived(string condition, string stackTrace, LogType type) {
-
             DateTime time = DateTime.Now;
-            var logMessage = new LogMessage(condition, stackTrace, type, time);
+            ConsoleLogType logType = (ConsoleLogType)type;
+            var logMessage = new LogMessage(condition, stackTrace, logType, time);
             registredMessages.Add(logMessage);
             OnLogRecived?.Invoke(logMessage);
         }
@@ -71,4 +73,5 @@ namespace DragynGames.InGameLogger {
             Debug.Log("Hi, I am a log");
         }
     }
+    
 }

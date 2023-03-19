@@ -6,14 +6,12 @@ namespace DragynGames.InGameLogger {
 
     public class DebugMessage : MonoBehaviour, IPointerClickHandler {
         [SerializeField] private TMP_Text messageTMP_text;
-        [SerializeField] private Color messageColor = Color.white;
-        [SerializeField] private Color warningAndAssertColor = Color.yellow;
-        [SerializeField] private Color errorAndExceptionColor = Color.red;
-
+        MessageStyleSO style;
+        
         private LogMessage message;
         private DetailedMessageInfo detailedMessageInfo;
 
-        public LogType MessageType {
+        public ConsoleLogType MessageType {
             get {
                 return message.type;
             }
@@ -23,20 +21,16 @@ namespace DragynGames.InGameLogger {
             detailedMessageInfo.ShowMessage(message);
         }
 
-        public void SetDebugMessageInfo(LogMessage message) {
+        public void SetDebugMessageInfo(LogMessage message,MessageStyleSO messageStyleSO) {
+            this.style= messageStyleSO;
             this.message = message;
             SetTextColor();
-            messageTMP_text.SetText(message.condition);
+            messageTMP_text.SetText(message.condition, messageStyleSO);
         }
 
         private void SetTextColor() {
-            Color color = messageColor;
-            if(MessageType == LogType.Error || MessageType == LogType.Exception) {
-                color = errorAndExceptionColor;
-            }
-            else if(MessageType == LogType.Warning || MessageType == LogType.Assert) {
-                color = warningAndAssertColor;
-            }
+            Color color = style.textColor;
+            
             messageTMP_text.color = color;
         }
 
