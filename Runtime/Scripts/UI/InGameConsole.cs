@@ -1,3 +1,4 @@
+using DragynGames.Console;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,10 @@ namespace DragynGames.InGameLogger {
         [SerializeField] private bool isShowingOnMessage;
         [SerializeField] private bool autoScroll;
         [SerializeField] private TMP_InputField inputField;
-        [SerializeField] MessageStyleSO[] messageStyleSOArray;
+        [SerializeField] private MessageStyleSO[] messageStyleSOArray;
+
+        [SerializeField] private Transform CommandHintsParent;
+        [SerializeField] private TMP_Text hintPrefab;
 
         private Dictionary<ConsoleLogType, bool> showByType = new Dictionary<ConsoleLogType, bool>();
 
@@ -45,6 +49,24 @@ namespace DragynGames.InGameLogger {
         private void Awake() {
             AddLogTypesWithDefaultShowValue();
             inputField.onSubmit.AddListener(inputField_OnSubmit);
+            inputField.onValueChanged.AddListener(inputField_OnChanged);
+            TextToolTip.OnSearchComplete += ShowAutocomplete;
+        }
+        private void ShowAutocomplete(List<MethodDescription> methodDescriptions) {
+            foreach(Transform child in CommandHintsParent) {
+                Destroy(child.gameObject);
+            }
+            foreach(var methodDescription in methodDescriptions) {
+                TMP_Text newHint = Instantiate(hintPrefab, CommandHintsParent);
+                newHint.SetText(methodDescription.ToString());
+            }
+        }
+
+        private void inputField_OnChanged(string arg0) {
+            if(arg0.Length == 0) return;
+
+            TextToolTip.FindMethodsStartingAsync(arg0);
+
         }
 
         private void inputField_OnSubmit(string consoleInput) {
@@ -61,8 +83,14 @@ namespace DragynGames.InGameLogger {
 
             inputField.SetTextWithoutNotify(string.Empty);
             inputField.ActivateInputField();
+
+            if(OnCommand == null) {
+                string response = TextToolTip.ExecuteMethod(consoleInput.TrimStart('-'));
+                Debug.Log(response);
+            }
+
         }
-        
+
 
         private void AddDebugMessage(LogMessage message) {
             MessageStyleSO messageStyleSO = GetLogStyleSO(message.type);
@@ -114,7 +142,7 @@ namespace DragynGames.InGameLogger {
             showByType.Add(ConsoleLogType.Exception, true);
             showByType.Add(ConsoleLogType.Assert, true);
         }
-       
+
         private void OnEnable() {
             InGameLogger.OnLogRecived += AddDebugMessage;
         }
@@ -138,7 +166,7 @@ namespace DragynGames.InGameLogger {
             }
             return false;
         }
-        
+
     }
     public enum ConsoleLogType {
         //
